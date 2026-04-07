@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Billy Brand Products</title>
+  <meta name="description" content="Premium household, kitchen, and personal care products by Billy Brand." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+      --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+      --text-hero: clamp(3rem, 0.5rem + 7vw, 6rem);
+      --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem; --space-5: 1.25rem;
+      --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem; --space-12: 3rem; --space-16: 4rem; --space-20: 5rem; --space-24: 6rem;
+      --color-bg: #0d0d0d;
+      --color-surface: #151515;
+      --color-surface-2: #1d1d1d;
+      --color-surface-offset: #242424;
+      --color-border: rgba(255,255,255,.12);
+      --color-text: #f5f1e8;
+      --color-text-muted: #b9b1a2;
+      --color-text-faint: #8c8578;
+      --color-primary: #d4af37;
+      --color-primary-hover: #e4c768;
+      --color-primary-highlight: rgba(212,175,55,.14);
+      --radius-sm: .5rem; --radius-md: .85rem; --radius-lg: 1.2rem; --radius-xl: 1.8rem; --radius-full: 9999px;
+      --shadow-lg: 0 18px 40px rgba(0,0,0,.35);
+      --content: 1180px;
+      --font-body: 'Inter', sans-serif;
+      --font-display: 'Inter', sans-serif;
+      --transition: 180ms cubic-bezier(0.16,1,0.3,1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background:
+        radial-gradient(circle at top right, rgba(212,175,55,.12), transparent 28%),
+        linear-gradient(180deg, #0b0b0b 0%, #111111 100%);
+      color: var(--color-text);
+      line-height: 1.6;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; border: 0; cursor: pointer; }
+    .container { width: min(calc(100% - 2rem), var(--content)); margin-inline: auto; }
+    .section { padding: clamp(var(--space-12), 8vw, var(--space-24)) 0; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: .5rem; padding: .45rem .85rem;
+      border-radius: var(--radius-full); background: var(--color-primary-highlight); color: var(--color-primary);
+      font-size: var(--text-xs); text-transform: uppercase; letter-spacing: .12em;
+    }
+    .site-header {
+      position: sticky; top: 0; z-index: 50; backdrop-filter: blur(16px);
+      background: rgba(13,13,13,.82); border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav-wrap {
+      min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .brand { display: flex; align-items: center; gap: .85rem; font-weight: 800; letter-spacing: .04em; }
+    .brand-mark {
+      width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, #f0d57b, #b98a14);
+      color: #111; display: grid; place-items: center; font-weight: 800;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.45);
+    }
+    .nav-links { display: flex; gap: 1.1rem; flex-wrap: wrap; }
+    .nav-links a { font-size: var(--text-sm); color: var(--color-text-muted); }
+    .nav-links a:hover { color: var(--color-text); }
+    .nav-cta {
+      padding: .85rem 1.15rem; border-radius: var(--radius-full); background: var(--color-primary); color: #111;
+      font-weight: 700;
+    }
+    .hero { padding: clamp(4rem, 9vw, 8rem) 0 3rem; }
+    .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 2rem; align-items: center; }
+    .hero h1 { font-size: var(--text-hero); line-height: .95; letter-spacing: -.04em; max-width: 11ch; }
+    .hero p { margin-top: 1rem; color: var(--color-text-muted); font-size: var(--text-base); max-width: 60ch; }
+    .hero-actions { margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary, .btn-secondary {
+      padding: 1rem 1.4rem; border-radius: var(--radius-full); display: inline-flex; align-items: center; justify-content: center;
+      transition: transform var(--transition), background var(--transition), color var(--transition);
+      min-height: 48px; font-weight: 700;
+    }
+    .btn-primary { background: var(--color-primary); color: #111; }
+    .btn-primary:hover { background: var(--color-primary-hover); transform: translateY(-1px); }
+    .btn-secondary { border: 1px solid var(--color-border); color: var(--color-text); background: rgba(255,255,255,.02); }
+    .btn-secondary:hover { background: rgba(255,255,255,.05); }
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 1.25rem; box-shadow: var(--shadow-lg);
+    }
+    .hero-visual {
+  aspect-ratio: 4 / 5;
+  border-radius: calc(var(--radius-xl) - .35rem);
+  position: relative;
+  overflow: hidden;
+}
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+  opacity: 1;
+}
+    .stat-strip {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-top: 1rem;
+    }
+    .stat {
+      background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 1rem;
+    }
+    .stat strong { font-size: var(--text-lg); color: var(--color-primary); display: block; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 1rem; margin-bottom: 2rem; }
+    .section-head h2 { font-size: var(--text-2xl); line-height: 1; letter-spacing: -.03em; }
+    .section-head p { color: var(--color-text-muted); max-width: 58ch; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.25rem; }
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border: 1px solid var(--color-border); border-radius: var(--radius-xl); overflow: hidden;
+    }
+    .product-media { aspect-ratio: 4/3; background-size: cover; background-position: center; }
+    .product-content { padding: 1.15rem; }
+    .product-content h3 { font-size: 1.12rem; margin-bottom: .45rem; }
+    .muted { color: var(--color-text-muted); }
+    .price-row { margin-top: .9rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .price { font-weight: 800; color: var(--color-primary); }
+    .pill {
+      display: inline-flex; padding: .42rem .7rem; border-radius: var(--radius-full); font-size: var(--text-xs);
+      background: rgba(255,255,255,.05); color: var(--color-text-muted); margin-bottom: .8rem;
+    }
+    .why-grid .card, .review-card, .team-card, .contact-card { padding: 1.25rem; }
+    .why-grid h3, .team-card h3, .review-card h3 { margin: .75rem 0 .45rem; font-size: 1.1rem; }
+    .icon-box {
+      width: 3rem; height: 3rem; border-radius: 1rem; display: grid; place-items: center;
+      background: var(--color-primary-highlight); color: var(--color-primary); font-weight: 800;
+    }
+    .review-stars { color: var(--color-primary); letter-spacing: .15em; margin-bottom: .85rem; }
+    .about-wrap, .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .about-panel, .contact-card {
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 1.4rem;
+    }
+    .about-panel ul { list-style: none; margin-top: 1rem; display: grid; gap: .75rem; }
+    .about-panel li { color: var(--color-text-muted); }
+    .team-photo {
+      aspect-ratio: 1/1; border-radius: 1.2rem; margin-bottom: 1rem; background-size: cover; background-position: center;
+    }
+    .filters { display: flex; gap: .8rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .filter-chip {
+      padding: .72rem 1rem; border-radius: var(--radius-full); border: 1px solid var(--color-border);
+      color: var(--color-text-muted); background: rgba(255,255,255,.02);
+    }
+    .filter-chip.active { background: var(--color-primary); color: #111; border-color: transparent; }
+    form { display: grid; gap: .9rem; margin-top: 1rem; }
+    input, textarea {
+      width: 100%; padding: 1rem 1rem; background: #121212; border: 1px solid var(--color-border);
+      color: var(--color-text); border-radius: .9rem; min-height: 50px;
+    }
+    textarea { min-height: 120px; resize: vertical; }
+    iframe { width: 100%; min-height: 280px; border: 0; border-radius: 1rem; filter: grayscale(1) invert(.92) contrast(.92); }
+    .site-footer {
+      border-top: 1px solid rgba(255,255,255,.08); padding: 1.5rem 0 3rem; color: var(--color-text-muted);
+    }
+    .footer-grid { display: grid; grid-template-columns: 1.2fr .8fr .8fr; gap: 1.25rem; }
+    .footer-grid h4 { color: var(--color-text); margin-bottom: .8rem; }
+    .whatsapp-float {
+      position: fixed; right: 18px; bottom: 18px; z-index: 60; width: 58px; height: 58px; border-radius: 50%;
+      display: grid; place-items: center; background: #25D366; color: #fff; box-shadow: 0 14px 30px rgba(0,0,0,.28);
+      font-weight: 800;
+    }
+    .reveal { opacity: 0; transform: translateY(18px); transition: 700ms ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (max-width: 980px) {
+      .hero-grid, .about-wrap, .contact-wrap, .footer-grid { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: repeat(2,1fr); }
+      .grid-4 { grid-template-columns: repeat(2,1fr); }
+      .section-head { align-items: start; flex-direction: column; }
+      .nav-wrap { padding: .8rem 0; align-items: start; flex-direction: column; }
+    }
+    @media (max-width: 640px) {
+      .grid-3, .grid-4, .stat-strip { grid-template-columns: 1fr; }
+      .hero h1 { max-width: 8ch; }
+      .hero-actions { flex-direction: column; }
+      .btn-primary, .btn-secondary, .nav-cta { width: 100%; }
+      .nav-links { width: 100%; justify-content: space-between; gap: .6rem; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" style="position:absolute;left:-9999px;top:auto;">Skip to content</a>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home" aria-label="Billy Brand home">
+        <span class="brand-mark" style="padding:0;overflow:hidden;background:#111;"><img src="./Images/Logo.png" alt="Billy Brand logo" width="42" height="42" style="width:100%;height:100%;object-fit:contain;"></span>
+        <span>Billy Brand Products</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#home">Home</a>
+        <a href="#products">Products</a>
+        <a href="#about">About</a>
+        <a href="#team">Team</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="nav-cta" href="#products">Shop Now</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Premium household brand</span>
+          <h1>Premium Products, Trusted Quality</h1>
+          <p>Billy Brand ko ek modern, premium aur trust-focused digital identity ke saath present kiya gaya hai jahan product quality, clean presentation aur brand credibility sab clearly visible hai.</p>
+          <div class="hero-actions">
+            <a class="btn-primary" href="#products">Shop Now</a>
+            <a class="btn-secondary" href="#about">Explore Brand Story</a>
+          </div>
+          <div class="stat-strip reveal">
+            <div class="stat"><strong>20+ Years</strong><span class="muted">Brand legacy</span></div>
+            <div class="stat"><strong>4 Categories</strong><span class="muted">Food, chemical, mehandi, more</span></div>
+            <div class="stat"><strong>Trusted Quality</strong><span class="muted">Focused on customer satisfaction</span></div>
+          </div>
+        </div>
+        <div class="hero-card reveal">
+          <div class="hero-visual">
+  <img src="./Images/sendha-lahori-namak.jpg.png" class="slide active">
+  <img src="./Images/dish-washer.jpg.jpeg" class="slide">
+  <img src="./Images/floor-cleaner.jpg.jpeg" class="slide">
+  <img src="./Images/sendha-namak.jpg.jpeg" class="slide">
+</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="products">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow">Products</span>
+            <h2>Featured Range</h2>
+          </div>
+          <p>Original website par multiple product categories listed hain, aur is updated remake mein uploaded screenshot mein dikh rahi cleaner aur salt product images ko clearer product cards mein map kiya gaya hai.[page:1][file:5]</p>
+        </div>
+        <div class="filters reveal" aria-label="Product filters">
+          <button class="filter-chip active">All</button>
+          <button class="filter-chip">Food</button>
+          <button class="filter-chip">Chemical</button>
+          <button class="filter-chip">Salt</button>
+          <button class="filter-chip">Kitchen Care</button>
+        </div>
+        <div class="grid-4">
+          <article class="card reveal">
+            <div class="product-media" style="background-image:url('./Images/dish-washer.jpg.jpeg')"></div>
+            <div class="product-content">
+              <span class="pill">Food Products</span>
+              <h3>Dish Washer</h3>
+              <p class="muted">Daily kitchen cleaning solution with a sharp, clean product presentation.</p>
+              <div class="price-row"><span class="price">₹120</span><a class="btn-secondary" href="#contact">Buy Now</a></div>
+            </div>
+          </article>
+          <article class="card reveal">
+            <div class="product-media" style="background-image:url('./Images/floor-cleaner.jpg.jpeg')"></div>
+            <div class="product-content">
+              <span class="pill">Chemical Products</span>
+              <h3>Floor Cleaner</h3>
+              <p class="muted">Household cleaning product positioned for freshness and daily floor care.</p>
+              <div class="price-row"><span class="price">₹165</span><a class="btn-secondary" href="#contact">Buy Now</a></div>
+            </div>
+          </article>
+          <article class="card reveal">
+            <div class="product-media" style="background-image:url('./Images/sendha-lahori-namak.jpg.png')"></div>
+            <div class="product-content">
+              <span class="pill">Mehandi Products</span>
+              <h3>Sendha Lahori Namak</h3>
+              <p class="muted">Traditional salt product presented with stronger visual shelf appeal.</p>
+              <div class="price-row"><span class="price">₹95</span><a class="btn-secondary" href="#contact">Buy Now</a></div>
+            </div>
+          </article>
+          <article class="card reveal">
+            <div class="product-media" style="background-image:url('./Images/sendha-namak.jpg.jpeg')"></div>
+            <div class="product-content">
+              <span class="pill">Other Products</span>
+              <h3>Sendha Namak</h3>
+              <p class="muted">Clean packaged salt variant shown with a simple premium card layout.</p>
+              <div class="price-row"><span class="price">₹90</span><a class="btn-secondary" href="#contact">Buy Now</a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow">Why choose us</span>
+            <h2>Trust Builders</h2>
+          </div>
+          <p>Current site copy household aur kitchen products mein do decades se zyada experience aur strict quality checks highlight karti hai, so ye section usi trust angle ko visually stronger banata hai.[page:1]</p>
+        </div>
+        <div class="grid-4 why-grid">
+          <div class="card reveal"><div class="icon-box">01</div><h3>Long Brand Legacy</h3><p class="muted">Over two decades ki positioning ko premium trust message ke saath showcase kiya gaya hai.[page:1]</p></div>
+          <div class="card reveal"><div class="icon-box">02</div><h3>Quality Focus</h3><p class="muted">Brand ki existing quality-first line ko stronger, client-friendly presentation diya gaya hai.[page:1]</p></div>
+          <div class="card reveal"><div class="icon-box">03</div><h3>Clear Product Discovery</h3><p class="muted">Categories aur products ab scattered feel nahi karte, balki easy browsing format mein dikhte hain.</p></div>
+          <div class="card reveal"><div class="icon-box">04</div><h3>Premium First Impression</h3><p class="muted">Dark premium palette, strong spacing aur focused CTA brand ko zyada serious aur reliable dikhate hain.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container about-wrap">
+        <div class="about-panel reveal">
+          <span class="eyebrow">About us</span>
+          <h2 style="font-size:var(--text-2xl);margin-top:.9rem;line-height:1;">Built on quality and consistency</h2>
+          <p class="muted" style="margin-top:1rem;">Original website brand ko household products ke well-known name ke roop mein present karti hai aur quality-led positioning claim karti hai.[page:1]</p>
+          <ul>
+            <li>Mission: quality-led products ko clean and dependable brand experience ke saath deliver karna.</li>
+            <li>Vision: har category mein customer trust aur repeat recall build karna.</li>
+            <li>Trust line: We focus on quality & customer satisfaction.</li>
+          </ul>
+        </div>
+        <div class="about-panel reveal">
+          <span class="pill">Brand story</span>
+          <p class="muted">Website par business name, Barnala location, office number, mobile numbers aur contact email already available hain, jo ek real offline business presence dikhate hain.[page:1]</p>
+          <div style="margin-top:1rem;display:grid;gap:.9rem;">
+            <div class="card" style="padding:1rem;">
+              <strong>Started with trust</strong>
+              <p class="muted">Traditional household categories se strong market familiarity build hui.</p>
+            </div>
+            <div class="card" style="padding:1rem;">
+              <strong>Expanded across categories</strong>
+              <p class="muted">Food, chemical, mehandi aur herbal products ko ek single brand umbrella ke under present kiya gaya.[page:1]</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="team">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow">Team</span>
+            <h2>People behind the brand</h2>
+          </div>
+          <p>Team details current site par visible nahi hain, isliye remake ke liye yahan clean demo team section rakha gaya hai jo later real photos aur bios se replace ho sakta hai.[page:1]</p>
+        </div>
+        <div class="grid-3">
+          <article class="card team-card reveal">
+            <div class="team-photo" style="background-image:url('Images/3.jpeg')"></div>
+            <h3>Mridul Grover</h3>
+            <p class="pill">Founder</p>
+            <p class="muted">Brand growth, product direction aur quality standards par focus karta hai.</p>
+          </article>
+          <article class="card team-card reveal">
+            <div class="team-photo" style="background-image:url('Images/vikas\ kumar.png')"></div>
+            <h3>Vikas kumar</h3>
+            <p class="pill">Operations Lead</p>
+            <p class="muted">Packaging, fulfillment aur product consistency ko streamline karti hai.</p>
+          </article>
+          <article class="card team-card reveal">
+            <div class="team-photo" style="background-image:url('https://picsum.photos/seed/sales3/500/500')"></div>
+            <h3>Manpreet Singh</h3>
+            <p class="pill">Sales & Support</p>
+            <p class="muted">Customer communication, dealer relations aur response handling dekhta hai.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="reviews">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow">Reviews</span>
+            <h2>Customer voice matters</h2>
+          </div>
+          <p>Current site par testimonials heading present hai but visible detailed review content weak hai, isliye remake mein review cards ko stronger trust section ke roop mein use kiya gaya hai.[page:1]</p>
+        </div>
+        <div class="grid-3">
+          <article class="card review-card reveal">
+            <div class="review-stars">★★★★★</div>
+            <h3>Consistent product quality</h3>
+            <p class="muted">“Packaging aur quality dono reliable lage. Brand ka presentation ab premium feel deta hai.”</p>
+          </article>
+          <article class="card review-card reveal">
+            <div class="review-stars">★★★★★</div>
+            <h3>Clear and trustworthy</h3>
+            <p class="muted">“Website pe ab products samajhna easy hai aur contact details properly visible hain.”</p>
+          </article>
+          <article class="card review-card reveal">
+            <div class="review-stars">★★★★☆</div>
+            <h3>Better buying confidence</h3>
+            <p class="muted">“Story, categories aur support sections ki wajah se trust zyada feel hota hai.”</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container contact-wrap">
+        <div class="contact-card reveal">
+          <span class="eyebrow">Contact</span>
+          <h2 style="font-size:var(--text-2xl);margin-top:.9rem;line-height:1;">Let customers reach you fast</h2>
+          <p class="muted" style="margin-top:1rem;">Current website par office address Near Dhanaula Phatak, Barnala, Punjab, office number 01679-230574, multiple mobile numbers aur contact@billybrandproducts.com listed hain, so unhi details ko yahan better structure mein place kiya gaya hai.[page:1]</p>
+          <div style="margin-top:1rem;display:grid;gap:.8rem;">
+            <div><strong>Phone</strong><p class="muted">01679-230574 | 95179-72924</p></div>
+            <div><strong>Email</strong><p class="muted">mridulgrover09@outlook.com</p></div>
+            <div><strong>Location</strong><p class="muted">Near Dhanaula Phatak, Barnala, Punjab</p></div>
+          </div>
+          <form>
+            <input type="text" placeholder="Your name" aria-label="Your name">
+            <input type="email" placeholder="Email address" aria-label="Email address">
+            <textarea placeholder="Tell us what you need" aria-label="Message"></textarea>
+            <button class="btn-primary" type="button">Send Message</button>
+          </form>
+        </div>
+        <div class="contact-card reveal">
+          <span class="pill">Map</span>
+          <iframe title="Barnala location map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Barnala%20Punjab&z=13&output=embed"></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h4>Billy Brand Products</h4>
+        <p>Premium remake concept focused on trust, clarity, product showcase, and better customer confidence.</p>
+      </div>
+      <div>
+        <h4>Quick links</h4>
+        <p><a href="#products">Products</a></p>
+        <p><a href="#about">About</a></p>
+        <p><a href="#contact">Contact</a></p>
+      </div>
+      <div>
+        <h4>Social</h4>
+        <p><a href="https://wa.me/9517972924" target="_blank" rel="noopener noreferrer">WhatsApp</a></p>
+        <p><a href="mailto:mridulgrover09@outlook.com">Email</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <a class="whatsapp-float" href="https://wa.me/9517972924" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">WA</a>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.14 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  
+let slides = document.querySelectorAll(".slide");
+let index = 0;
+
+setInterval(() => {
+  slides[index].classList.remove("active");
+  index = (index + 1) % slides.length;
+  slides[index].classList.add("active");
+}, 3000);
+</script>
+</body>
+</html>
